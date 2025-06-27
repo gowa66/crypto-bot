@@ -3,6 +3,7 @@
 import logging
 from telegram.ext import Application, CommandHandler, CallbackQueryHandler, MessageHandler, filters
 
+from config import TELEGRAM_TOKEN
 from handlers.command_handler import start, help_command
 from handlers.button_handler import handle_button
 from handlers.message_handler import handle_text
@@ -15,7 +16,11 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 def main():
-    application = Application.builder().token('TELEGRAM_TOKEN').build()
+    if not TELEGRAM_TOKEN:
+        logger.error("Missing TELEGRAM_BOT_TOKEN in environment.")
+        return
+
+    application = Application.builder().token(TELEGRAM_TOKEN).build()
 
     application.add_handler(CommandHandler("start", start))
     application.add_handler(CommandHandler("help", help_command))
