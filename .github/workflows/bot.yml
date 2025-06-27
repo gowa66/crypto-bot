@@ -7,6 +7,10 @@ on:
 
 jobs:
   run-bot:
+    concurrency:
+      group: telegram-bot
+      cancel-in-progress: true
+
     runs-on: ubuntu-latest
 
     steps:
