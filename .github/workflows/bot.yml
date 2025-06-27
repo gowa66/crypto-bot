@@ -1,9 +1,9 @@
 name: Telegram Bot
 
 on:
-  workflow_dispatch:        # можно запускать вручную
+  workflow_dispatch:        # manual trigger
   schedule:
-    - cron: '*/15 * * * *'  # каждые 15 минут (чтобы бот перезапускался)
+    - cron: '*/15 * * * *'  # every 15 minutes reload
 
 jobs:
   run-bot:
